@@ -52,10 +52,13 @@ class HangmanGame:
 
     def guess(self, letter):
         if len(letter) != 1 or not letter.isalpha():
-            return "Enter one letter."
+            return "Invalid input. Enter one letter."
 
-        if letter in self.guessed or letter in self.wrong:
-            return "Already guessed."
+        if letter in self.guessed:
+            return "You already guessed that letter."
+
+        if letter in self.wrong:
+            return "You already guessed that letter."
 
         if letter in self.secret:
             self.guessed.add(letter)
@@ -64,6 +67,7 @@ class HangmanGame:
         self.wrong.add(letter)
         self.lives -= 1
         return "Wrong."
+  
 
     def use_hint(self):
         if self.hint_used:
@@ -199,5 +203,5 @@ class HangmanGame:
                     self.streak
                 )
                 return
-            if __name__ == "__main__":
-                HangmanGame().run()
+if __name__ == "__main__":
+    HangmanGame().run()
